@@ -19,6 +19,10 @@ Notebook	Descripción
 
 Los datos provienen del dataset público de [Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) disponible en Kaggle.
 
+## 🤖 **Modelo entrenado**
+
+Puedes descargar el archivo del modelo entrenado (`modelo_ventas_rf.pkl`) desde [Xxxx](LINK_AQUI).
+
 ---
 
 ## 🗂️ Estructura de Carpetas

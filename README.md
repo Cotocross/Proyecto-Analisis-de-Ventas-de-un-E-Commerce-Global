@@ -33,7 +33,7 @@ PD: El archivo no se puede alojar en Github por el peso (1,14 gb).
 ## 🗂️ Estructura de Carpetas
 
 ```
-📦 Proyecto - Análisis de Ventas de un E-Commerce Global
+📦 Portafolio
  ┣ 📁 data/
  ┃ ┣ 📄 olist_customers_dataset.csv
  ┃ ┣ 📄 olist_geolocation_dataset.csv
@@ -86,7 +86,7 @@ PD: El archivo no se puede alojar en Github por el peso (1,14 gb).
 1️⃣ Clona este repositorio  
 ```bash
 git clone https://github.com/Cotocross/Portafolio.git
-cd Proyecto - Análisis de Ventas de un E-Commerce Global
+cd Portafolio
 ```
 
 2️⃣ Crea un entorno virtual  

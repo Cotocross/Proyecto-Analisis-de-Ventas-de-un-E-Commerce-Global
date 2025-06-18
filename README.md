@@ -12,7 +12,6 @@
 📊 Descripción del Proyecto
 Este repositorio contiene tres notebooks principales:
 
-Notebook	Descripción
 
 1️⃣ analisis_ventas.ipynb :	Exploración y análisis visual de categorías de productos, precios y costos de envío.
 

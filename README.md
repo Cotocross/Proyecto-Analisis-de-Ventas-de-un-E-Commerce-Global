@@ -13,15 +13,20 @@
 Este repositorio contiene tres notebooks principales:
 
 Notebook	Descripción
-1️⃣ analisis_ventas.ipynb	Exploración y análisis visual de categorías de productos, precios y costos de envío.
-2️⃣ prediccion_ventas.ipynb	Modelo de Regresión Lineal para estimar precios de productos basado en categorías, costos de envío e información del vendedor.
-3️⃣ modelo_avanzado.ipynb	Entrenamiento de un modelo avanzado (Random Forest) con Pipeline y optimización de hiperparámetros usando GridSearchCV. Incluye exportación del modelo para producción.
+
+1️⃣ analisis_ventas.ipynb :	Exploración y análisis visual de categorías de productos, precios y costos de envío.
+
+2️⃣ prediccion_ventas.ipynb :	Modelo de Regresión Lineal para estimar precios de productos basado en categorías, costos de envío e información del vendedor.
+
+3️⃣ modelo_avanzado.ipynb : Entrenamiento de un modelo avanzado (Random Forest) con Pipeline y optimización de hiperparámetros usando GridSearchCV. Incluye exportación del modelo para producción.
 
 Los datos provienen del dataset público de [Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) disponible en Kaggle.
 
 ## 🤖 **Modelo entrenado**
 
-Puedes descargar el archivo del modelo entrenado (`modelo_ventas_rf.pkl`) desde [Xxxx](LINK_AQUI).
+Puedes descargar el archivo del modelo entrenado (`modelo_ventas_rf.pkl`) desde [MEGA](https://mega.nz/file/GLgFSYAK#xaeUEvgrHDQKX0oLVXxQW99E6bimnATZuNVv7MpsoJg).
+
+PD: El archivo no se puede alojar en Github por el peso (1,14 gb).
 
 ---
 
@@ -62,12 +67,12 @@ Puedes descargar el archivo del modelo entrenado (`modelo_ventas_rf.pkl`) desde 
 
 ## 📈 Pasos Principales
 
-✅ **Análisis Exploratorio**
+✅ Análisis Exploratorio
 - Visualización de categorías principales.
 - Análisis de precios y costos de envío.
 - Limpieza de datos y codificación de categorías.
 
-✅ **Predicción de Ventas**
+✅ Predicción de Ventas
 - División de datos en entrenamiento y prueba.
 - Modelo base: Regresión Lineal.
 - Modelo mejorado: Random Forest.
@@ -80,8 +85,8 @@ Puedes descargar el archivo del modelo entrenado (`modelo_ventas_rf.pkl`) desde 
 
 1️⃣ Clona este repositorio  
 ```bash
-git clone https://github.com/TU_USUARIO/ecommerce-sales-prediction.git
-cd ecommerce-sales-prediction
+git clone https://github.com/Cotocross/Portafolio.git
+cd Proyecto - Análisis de Ventas de un E-Commerce Global
 ```
 
 2️⃣ Crea un entorno virtual  

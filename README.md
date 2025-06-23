@@ -32,7 +32,7 @@ PD: El archivo no se puede alojar en Github por el peso (1,14 gb).
 ## 🗂️ Estructura de Carpetas
 
 ```
-📦 Portafolio
+📦 Proyecto - Análisis de Ventas de un E-Commerce Global
  ┣ 📁 data/
  ┃ ┣ 📄 olist_customers_dataset.csv
  ┃ ┣ 📄 olist_geolocation_dataset.csv

@@ -2,7 +2,6 @@
 # 🛍️ Predicción de Ventas en E-commerce Brasileño 🇧🇷
 
 **Autor:** Alejandro Javier Contreras Olate  
-**Nivel:** Científico de Datos Intermedio  
 **Objetivo:** Analizar y predecir ventas usando técnicas de Machine Learning aplicadas a datos reales de un e-commerce brasileño.
 
 ---

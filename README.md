@@ -83,7 +83,7 @@ PD: El archivo no se puede alojar en Github por el peso (1,14 gb).
 
 1️⃣ Clona este repositorio  
 ```bash
-git clone https://github.com/Cotocross/Portafolio.git
+git clone https://github.com/Cotocross/Proyecto-Analisis-de-Ventas-de-un-E-Commerce-Global.git
 cd Portafolio
 ```
 

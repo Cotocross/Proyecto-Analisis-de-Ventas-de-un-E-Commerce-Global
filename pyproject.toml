@@ -1,0 +1,24 @@
+[tool.ruff]
+# Set line length to a common standard
+line-length = 88
+# Indent with 4 spaces
+indent-width = 4
+
+[tool.ruff.lint]
+# A good starting set of rules:
+# E = pycodestyle errors
+# W = pycodestyle warnings
+# F = Pyflakes
+# I = isort (import sorting)
+# UP = pyupgrade (modernize Python code)
+select = ["E", "W", "F", "I", "UP"]
+
+[tool.ruff.format]
+# Use double quotes for strings
+quote-style = "double"
+# Use spaces for indentation
+indent-style = "space"
+# Avoid magic trailing commas
+skip-magic-trailing-comma = false
+# Auto-detect line endings
+line-ending = "auto"

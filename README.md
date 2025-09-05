@@ -103,8 +103,34 @@ Puedes descargar el modelo desde el siguiente enlace externo (MEGA):
 
 ```bash
 python src/predict.py data/new_orders_example.csv
+
 ```
 El script imprimirá las predicciones para cada registro del archivo de entrada.
+
+#### 🧠 ¿Cómo funciona el proceso de predicción?
+
+1. **Carga del modelo:**
+  - El script busca el archivo `models/modelo_ventas_rf.pkl` (descargado desde MEGA) y lo carga en memoria. Si el archivo no existe, el script se detiene y muestra un error.
+
+2. **Carga y preprocesamiento de los datos nuevos:**
+  - El archivo CSV de entrada debe tener el formato de `olist_order_items_dataset.csv` (ver ejemplo en `data/new_orders_example.csv`).
+  - El script carga automáticamente los datos originales necesarios (productos, clientes, reviews, sellers, geolocalización, etc.) para enriquecer y transformar los nuevos pedidos igual que en el entrenamiento.
+  - Se realiza el mismo preprocesamiento y feature engineering que se usó para entrenar el modelo, asegurando coherencia en las predicciones.
+
+3. **Generación de predicciones:**
+  - El modelo predice el precio para cada registro nuevo usando exactamente las mismas variables (features) que en el entrenamiento.
+  - Si hay valores nulos inesperados, el script los rellena automáticamente con la mediana de cada columna.
+
+4. **Salida de resultados:**
+  - El script imprime en pantalla un DataFrame con los IDs relevantes (`order_id`, `product_id`) y el precio predicho (`predicted_price`).
+  - Puedes redirigir la salida a un archivo CSV si lo deseas.
+
+**Recomendaciones:**
+- Asegúrate de tener el modelo en la carpeta `models/` antes de ejecutar predicciones.
+- Si modificas el formato de entrada, revisa que contenga todas las columnas necesarias.
+- El preprocesamiento es automático, pero si falta algún archivo de datos original, el script lo reportará y se detendrá.
+
+Este flujo garantiza que las predicciones sean consistentes, reproducibles y alineadas con el entrenamiento del modelo.
 
 ### 4. Ejecutar Pruebas Unitarias
 

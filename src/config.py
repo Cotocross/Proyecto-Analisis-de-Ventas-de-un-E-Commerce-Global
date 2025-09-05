@@ -1,3 +1,10 @@
+
+"""
+Configuración centralizada de rutas y parámetros para el proyecto de predicción de ventas e-commerce.
+
+Define rutas absolutas a los datos, modelos y variables clave para asegurar consistencia en todo el pipeline.
+"""
+
 from pathlib import Path
 
 # Directorio raíz del proyecto
@@ -24,10 +31,10 @@ GEOLOCATION_CLEANED_PATH = DATA_DIR / "geolocation_cleaned.csv"
 # Ruta al archivo de ejemplo para predicciones
 NEW_ORDERS_EXAMPLE_PATH = DATA_DIR / "new_orders_example.csv"
 
-# Ruta al modelo final
+# Ruta al modelo final entrenado
 MODEL_PATH = MODELS_DIR / "modelo_ventas_rf.pkl"
 
-# Columnas para el modelo (extraídas del notebook)
+# Columnas/features utilizadas por el modelo (deben coincidir con entrenamiento y predicción)
 FEATURES = [
     "month",
     "category_encoded",
@@ -38,4 +45,5 @@ FEATURES = [
     "distance_km",
 ]
 
+# Variable objetivo
 TARGET = "price"

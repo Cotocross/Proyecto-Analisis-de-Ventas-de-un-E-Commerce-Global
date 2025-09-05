@@ -18,8 +18,31 @@ logging.basicConfig(
 )
 
 
+
+"""
+Script de predicción para el modelo de ventas de un e-commerce brasileño.
+
+Permite cargar un modelo entrenado y realizar predicciones sobre nuevos datos de pedidos.
+
+Uso desde terminal:
+    python src/predict.py data/new_orders_example.csv
+
+El script imprime un DataFrame con los IDs y el precio predicho para cada registro.
+"""
+
 def load_model(model_path):
-    """Carga el modelo desde la ruta especificada."""
+    """
+    Carga un modelo entrenado desde un archivo .pkl.
+
+    Args:
+        model_path (str): Ruta al archivo del modelo entrenado (formato joblib/pkl).
+
+    Returns:
+        Modelo de machine learning cargado.
+
+    Raises:
+        SystemExit: Si el archivo no existe.
+    """
     try:
         model = joblib.load(model_path)
         logging.info(f"Modelo cargado exitosamente desde {model_path}")
@@ -31,18 +54,22 @@ def load_model(model_path):
         )
         sys.exit(1)
 
-
 def make_predictions(model, new_data_df):
     """
-    Realiza predicciones sobre nuevos datos.
+    Realiza predicciones sobre nuevos datos de pedidos.
 
     Args:
-        model: El modelo de machine learning entrenado.
-        new_data_df (pd.DataFrame): DataFrame con los nuevos datos
-            (formato similar a order_items).
+        model: Modelo de machine learning entrenado (RandomForestRegressor).
+        new_data_df (pd.DataFrame): DataFrame con los nuevos datos de pedidos
+            (debe tener formato similar a 'olist_order_items_dataset.csv').
 
     Returns:
-        np.array: Un array con las predicciones.
+        np.ndarray: Array con los valores predichos para el precio.
+
+    Ejemplo de uso:
+        >>> model = load_model('models/modelo_ventas_rf.pkl')
+        >>> new_data = pd.read_csv('data/new_orders_example.csv')
+        >>> preds = make_predictions(model, new_data)
     """
     logging.info("Cargando datos adicionales para el preprocesamiento...")
     try:
@@ -103,11 +130,17 @@ def make_predictions(model, new_data_df):
 
     return predictions
 
-
 def main():
-    """Función principal para ejecutar el script de predicción."""
+    """
+    Función principal para ejecutar el script de predicción desde la terminal.
+
+    Uso:
+        python src/predict.py data/new_orders_example.csv
+
+    El script imprime un DataFrame con los IDs y el precio predicho para cada registro.
+    """
     parser = argparse.ArgumentParser(
-        description="Script para hacer predicciones de ventas."
+        description="Script para hacer predicciones de ventas de productos nuevos."
     )
     parser.add_argument(
         "input_file",
@@ -119,7 +152,7 @@ def main():
     )
     args = parser.parse_args()
 
-    # Cargar el modelo
+    # Cargar el modelo entrenado
     model = load_model(config.MODEL_PATH)
 
     # Cargar los nuevos datos

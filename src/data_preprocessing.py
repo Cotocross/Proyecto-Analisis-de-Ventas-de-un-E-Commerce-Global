@@ -1,27 +1,40 @@
+
+"""
+Funciones de preprocesamiento y feature engineering para el modelo de ventas e-commerce.
+
+Incluye:
+- Cálculo de distancia Haversine entre cliente y vendedor.
+- Unión y transformación de los datasets de Olist.
+- Generación de variables para el modelado.
+"""
+
 import numpy as np
 import pandas as pd
 
 
 def haversine_distance(lat1, lon1, lat2, lon2):
     """
-    Calcula la distancia haversine entre dos puntos en la tierra.
+    Calcula la distancia Haversine entre dos puntos geográficos.
+
+    Args:
+        lat1, lon1: Coordenadas del primer punto (cliente).
+        lat2, lon2: Coordenadas del segundo punto (vendedor).
+
+    Returns:
+        float o array: Distancia en kilómetros.
     """
     R = 6371  # Radio de la Tierra en kilómetros
-
     lat1_rad = np.radians(lat1)
     lon1_rad = np.radians(lon1)
     lat2_rad = np.radians(lat2)
     lon2_rad = np.radians(lon2)
-
     dlon = lon2_rad - lon1_rad
     dlat = lat2_rad - lat1_rad
-
     a = (
         np.sin(dlat / 2) ** 2
         + np.cos(lat1_rad) * np.cos(lat2_rad) * np.sin(dlon / 2) ** 2
     )
     c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
-
     distance = R * c
     return distance
 
@@ -30,20 +43,24 @@ def load_and_preprocess_data(
     order_items, products, reviews, orders, customers, sellers, geolocation_cleaned
 ):
     """
-    Toma los dataframes de Olist, los une y realiza el preprocesamiento
-    y la ingeniería de características, incluyendo el cálculo de distancia.
+    Une y transforma los datasets de Olist para el modelado de ventas.
+
+    Realiza:
+    - Unión de tablas principales (items, productos, reviews, órdenes, clientes, vendedores).
+    - Unión de coordenadas promedio para cliente y vendedor.
+    - Feature engineering: mes, categoría codificada, popularidad vendedor, review_score, tiempo de entrega, distancia.
 
     Args:
-        order_items (pd.DataFrame): DataFrame de items de pedidos.
-        products (pd.DataFrame): DataFrame de productos.
-        reviews (pd.DataFrame): DataFrame de reviews.
-        orders (pd.DataFrame): DataFrame de órdenes.
-        customers (pd.DataFrame): DataFrame de clientes.
-        sellers (pd.DataFrame): DataFrame de vendedores.
-        geolocation_cleaned (pd.DataFrame): DataFrame con coordenadas promedio.
+        order_items (pd.DataFrame): Items de pedidos.
+        products (pd.DataFrame): Productos.
+        reviews (pd.DataFrame): Reviews de pedidos.
+        orders (pd.DataFrame): Órdenes.
+        customers (pd.DataFrame): Clientes.
+        sellers (pd.DataFrame): Vendedores.
+        geolocation_cleaned (pd.DataFrame): Coordenadas promedio por código postal.
 
-    Retorna:
-        pandas.DataFrame: Un DataFrame limpio y listo para el modelado.
+    Returns:
+        pd.DataFrame: DataFrame listo para entrenamiento/modelado.
     """
     # --- Unir datasets principales ---
     df = pd.merge(order_items, products, on="product_id")
@@ -98,7 +115,7 @@ def load_and_preprocess_data(
     else:
         df["category_encoded"] = 0
 
-    # 3. Crear feature de 'popularidad' del vendedor
+    # 3. Popularidad del vendedor (número de ventas)
     if "seller_id" in df.columns:
         seller_order_counts = df["seller_id"].value_counts().to_dict()
         df["seller_order_count"] = df["seller_id"].map(seller_order_counts).fillna(0)

@@ -1,5 +1,17 @@
-import logging
 
+"""
+Entrenamiento del modelo de predicción de ventas para e-commerce brasileño.
+
+Este script orquesta el pipeline completo: carga y preprocesa los datos, realiza feature engineering,
+entrena un modelo de Random Forest con búsqueda de hiperparámetros, evalúa el desempeño y guarda el modelo final.
+
+Ejecución desde terminal:
+    python src/train.py
+
+El modelo entrenado se guarda en la ruta definida en config.MODEL_PATH.
+"""
+
+import logging
 import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -13,7 +25,7 @@ import config
 from data_preprocessing import load_and_preprocess_data
 from preprocess_geolocation import generate_cleaned_geolocation
 
-# Configurar logging
+# Configurar logging para todo el script
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -21,7 +33,17 @@ logging.basicConfig(
 
 def run_training():
     """
-    Orquesta el pipeline completo de entrenamiento del modelo.
+    Ejecuta el pipeline completo de entrenamiento del modelo de ventas.
+
+    - Preprocesa los datos de geolocalización si es necesario.
+    - Carga y une todos los datasets relevantes.
+    - Realiza feature engineering y limpieza de datos.
+    - Divide los datos en entrenamiento y prueba.
+    - Entrena un Random Forest con búsqueda de hiperparámetros (GridSearchCV).
+    - Evalúa el modelo y guarda el mejor estimador.
+
+    Returns:
+        None. El modelo entrenado se guarda en disco.
     """
     logging.info("Inicio del pipeline de entrenamiento.")
 
@@ -35,7 +57,7 @@ def run_training():
     else:
         logging.info("Usando archivo de geolocalización procesado existente.")
 
-    # 2. Cargar todos los datos
+    # 2. Cargar todos los datos necesarios para el entrenamiento
     logging.info("Cargando datasets...")
     try:
         orders = pd.read_csv(config.ORDERS_PATH)
@@ -54,6 +76,7 @@ def run_training():
 
     # 3. Preprocesamiento y Feature Engineering
     logging.info("Ejecutando preprocesamiento de datos y feature engineering...")
+    # Esta función une y transforma todos los datos en un solo DataFrame listo para modelar
     df = load_and_preprocess_data(
         order_items, products, reviews, orders, customers, sellers, geolocation_cleaned
     )
@@ -61,28 +84,21 @@ def run_training():
     # NOTA: La traducción de categorías no está implementada en el notebook original.
     # Si se quisiera añadir, se haría aquí.
 
+
     # 4. Selección de variables y división de datos
     logging.info("Seleccionando features y dividiendo los datos...")
-
-    # Usamos las features definidas en el notebook
-    features = [
-        "month",
-        "category_encoded",
-        "freight_value",
-        "seller_order_count",
-        "review_score",
-        "delivery_time_days",
-        "distance_km",
-    ]
-    target = "price"
+    # Usamos las features definidas en config para asegurar consistencia con predicción
+    features = config.FEATURES
+    target = config.TARGET
 
     X = df[features].copy()
     y = df[target].copy()
 
-    # Manejar NaNs que puedan haber quedado
+    # Eliminar filas con NaNs remanentes
     X.dropna(inplace=True)
     y = y[X.index]
 
+    # División en entrenamiento y prueba (80/20)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
@@ -93,9 +109,13 @@ def run_training():
     # 5. Definir y entrenar el pipeline con GridSearchCV
     logging.info("Definiendo el pipeline y la grilla de parámetros...")
     pipeline = Pipeline(
-        [("scaler", StandardScaler()), ("rf", RandomForestRegressor(random_state=42))]
+        [
+            ("scaler", StandardScaler()),
+            ("rf", RandomForestRegressor(random_state=42)),
+        ]
     )
 
+    # Búsqueda de hiperparámetros para el Random Forest
     param_grid = {
         "rf__n_estimators": [100, 200],
         "rf__max_depth": [10, 20],
@@ -116,7 +136,7 @@ def run_training():
     r2 = r2_score(y_test, y_pred)
     logging.info(f"Modelo final - R² Score en conjunto de prueba: {r2:.4f}")
 
-    # 7. Guardar el modelo
+    # 7. Guardar el modelo entrenado
     logging.info(f"Guardando el modelo en: {config.MODEL_PATH}")
     joblib.dump(best_model, config.MODEL_PATH)
     logging.info("Modelo guardado exitosamente.")
@@ -124,5 +144,7 @@ def run_training():
     logging.info("Pipeline de entrenamiento completado.")
 
 
+
+# Permite ejecutar el entrenamiento directamente desde la terminal
 if __name__ == "__main__":
     run_training()

@@ -13,13 +13,20 @@
 
 ---
 
+
 ## 📊 Descripción General
 
-Este proyecto utiliza datos públicos de [Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) para abordar un problema real de predicción de precios en e-commerce. Incluye:
+Este proyecto aborda un caso real de ciencia de datos en e-commerce utilizando datos públicos de [Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). El objetivo principal es analizar el comportamiento de ventas y construir un modelo predictivo robusto que permita estimar el precio de productos en un entorno de ventas online.
 
-- Análisis exploratorio de datos (EDA) en Jupyter Notebook.
-- Scripts modulares en Python para preprocesamiento, entrenamiento y predicción.
-- Pruebas automatizadas y CI/CD con GitHub Actions.
+A través de un flujo de trabajo reproducible y automatizado, el proyecto integra:
+
+- **Análisis exploratorio de datos (EDA):** Identificación de tendencias, patrones de compra, categorías más relevantes y factores que influyen en las ventas.
+- **Preprocesamiento y feature engineering:** Limpieza, transformación y enriquecimiento de los datos para maximizar el valor predictivo.
+- **Modelado y evaluación:** Entrenamiento de modelos de Machine Learning (Random Forest y Regresión Lineal), comparación de métricas y selección del mejor enfoque.
+- **Predicción y aplicación práctica:** Generación de predicciones sobre nuevos pedidos, con potencial para casos de negocio como pricing dinámico, detección de anomalías y optimización logística.
+- **Automatización y calidad:** Pruebas unitarias y CI/CD con GitHub Actions para asegurar la confiabilidad y mantenibilidad del código.
+
+Este repositorio está diseñado para ser una referencia profesional y didáctica, ideal para portafolios de ciencia de datos aplicada a negocios reales.
 
 ---
 

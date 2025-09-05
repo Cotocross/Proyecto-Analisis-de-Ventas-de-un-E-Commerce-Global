@@ -1,4 +1,3 @@
-
 # 🛍️ Análisis y Predicción de Ventas en un E-commerce Brasileño 🇧🇷
 
 **Autor:** Alejandro Javier Contreras Olate  
@@ -116,6 +115,37 @@ Esto ejecuta los tests de preprocesamiento y predicción. Si todo está correcto
 - Los tests en `tests/` validan que el preprocesamiento y la predicción funcionen correctamente y que los resultados sean coherentes.
 - El workflow `.github/workflows/ci.yml` ejecuta automáticamente los tests con pytest en cada push o pull request usando GitHub Actions.
 - Si algún test falla, el workflow lo reporta y no permite hacer merge hasta que todo pase correctamente.
+
+---
+
+## ⚙️ Integración Continua (CI) con GitHub Actions
+
+El proyecto utiliza **GitHub Actions** para asegurar la calidad y confiabilidad del código mediante integración continua (CI). Esto significa que cada vez que realizas un push o abres un pull request en la rama `main` o `master`, se ejecuta automáticamente un flujo de trabajo que valida el proyecto.
+
+### ¿Qué hace el workflow de CI?
+
+El archivo `.github/workflows/ci.yml` define el siguiente proceso:
+
+1. **Disparadores:**
+   - Se ejecuta en cada push o pull request a las ramas `main` o `master`.
+2. **Entorno:**
+   - Usa una máquina virtual Ubuntu con Python 3.11.
+3. **Pasos principales:**
+   - **Checkout:** Descarga el código del repositorio.
+   - **Setup Python:** Instala la versión de Python especificada.
+   - **Instalación de dependencias:** Ejecuta `pip install -r requirements.txt` para instalar todas las librerías necesarias.
+   - **Ejecución de tests:** Lanza `pytest` para correr todas las pruebas unitarias del proyecto.
+
+### ¿Qué aporta esto al proyecto?
+
+- **Calidad y confianza:** Garantiza que cualquier cambio en el código pase por pruebas automáticas antes de integrarse, evitando errores en producción.
+- **Automatización:** No necesitas ejecutar los tests manualmente en cada cambio; GitHub Actions lo hace por ti en la nube.
+- **Colaboración segura:** Si trabajas en equipo, asegura que nadie pueda fusionar código que rompa el proyecto.
+- **Historial de builds:** Puedes revisar el historial de ejecuciones y detectar rápidamente cuándo y por qué falló algo.
+
+### Personalización
+
+Puedes modificar el archivo `.github/workflows/ci.yml` para agregar más pasos, como análisis de estilo de código, despliegue automático, o integración con otras herramientas.
 
 ---
 

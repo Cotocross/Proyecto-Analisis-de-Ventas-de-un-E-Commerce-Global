@@ -1,1 +1,4 @@
+# Ignorar archivos de modelos grandes
+models/*.pkl
+notebooks/*.pkl
 "modelo_ventas_rf.pkl" 

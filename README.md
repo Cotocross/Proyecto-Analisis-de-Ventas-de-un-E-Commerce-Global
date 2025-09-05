@@ -86,7 +86,11 @@ pip install -r requirements.txt
 ```bash
 python src/train.py
 ```
-El modelo entrenado se guardará en `models/modelo_ventas_rf.pkl`.
+
+El modelo entrenado se guardará en `models/modelo_ventas_rf.pkl` (no incluido en el repositorio por su gran tamaño).
+Puedes descargar el modelo desde el siguiente enlace externo (MEGA):
+
+`[Descargar modelo_ventas_rf.pkl desde MEGA](AQUI_VA_TU_LINK_DE_MEGA)`
 
 ### 3. Realizar Predicciones
 
@@ -100,7 +104,10 @@ El script imprimirá las predicciones para cada registro del archivo de entrada.
 ```bash
 pytest
 ```
+
 Esto ejecuta los tests de preprocesamiento y predicción. Si todo está correcto, verás que los tests pasan.
+
+**Nota:** Los archivos de modelo `.pkl` no están en el repositorio por su tamaño. Descárgalos desde el enlace externo y colócalos en la carpeta `models/` o `notebooks/` según corresponda.
 
 ---
 

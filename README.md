@@ -93,10 +93,11 @@ pip install -r requirements.txt
 python src/train.py
 ```
 
+
 El modelo entrenado se guardará en `models/modelo_ventas_rf.pkl` (no incluido en el repositorio por su gran tamaño).
 Puedes descargar el modelo desde el siguiente enlace externo (MEGA):
 
-`[Descargar modelo_ventas_rf.pkl desde MEGA](https://mega.nz/file/XOAGRQRJ#LPzgSzgenRS-ZcP6n-TeHFNmEGx_VZ5qRgXSws_nK5Q)`
+[Descargar modelo_ventas_rf.pkl desde MEGA](https://mega.nz/file/XOAGRQRJ#LPzgSzgenRS-ZcP6n-TeHFNmEGx_VZ5qRgXSws_nK5Q)
 
 ### 3. Realizar Predicciones
 

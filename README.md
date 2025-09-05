@@ -9,7 +9,7 @@
 ## � Objetivos del Proyecto
 
 1. Analizar datos reales de un e-commerce brasileño (Olist) para extraer insights de negocio.
-2. Construir y evaluar modelos de Machine Learning para predecir el precio de productos.
+2. Construir y evaluar modelos de Machine Learning para predecir el precio de productos
 3. Proveer un flujo reproducible y automatizado para análisis, entrenamiento, predicción y validación.
 
 ---
